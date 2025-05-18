@@ -1,0 +1,7 @@
+# TypeScript
+*.tsbuildinfo
+
+# Node modules (if any, for tooling)
+node_modules/
+
+
