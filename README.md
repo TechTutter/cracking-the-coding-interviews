@@ -20,7 +20,7 @@ An example of an abstraction is a "List", which might be implemented with a Vect
 - [**StringBuilder**](#stringbuilder)
 - **Bitset** - a.k.a. binary set, bit/binary vector
 - **Disjoint set / Union-Find** - for algorithms e.g. Kruskal
-- **Linked List**
+- [**Linked List**](#linked-list)
 - **Circular Buffer**
 - **Hash Table** - core structure used to implement maps and dictionaries.
 - **Trees**
@@ -87,6 +87,26 @@ A mutable string accumulator that allows efficient construction of strings throu
 | `length`      | O(1) | O(1)  | Cached from `toString()`                  |
 
 > `toString()` uses a cached result to avoid recomputing joins unless mutated.
+
+## Linked List
+
+**Implementation** – See [LinkedList.ts](./src/data-structures/linked-list/LinkedList.ts)
+
+**Use Cases**
+
+- Queue-like behavior with fast head/tail insertion
+- When frequent insertion/removal is needed without costly reallocation
+- Efficient list building from streamed or unknown-sized inputs
+
+**Complexity**
+
+| Operation     | Time | Note                                 |
+| ------------- | ---- | ------------------------------------ |
+| `append(val)` | O(1) | Tail reference enables constant push |
+| `get(index)`  | O(n) | Traversal required                   |
+| `remove(val)` | O(n) | Scans list to find and unlink node   |
+
+> Optimized for mutation, not indexed access. Use arrays if random access is primary.
 
 # ADTs
 

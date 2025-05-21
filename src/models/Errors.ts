@@ -18,6 +18,12 @@ export class EmptyVectorError extends BaseError {
   }
 }
 
+export class OutOfBoundsError extends BaseError {
+  constructor(message: string = 'Index out of bounds') {
+    super(message);
+  }
+}
+
 export class InvalidArgumentError extends BaseError {
   constructor(message: string = 'Invalid argument provided') {
     super(message);
