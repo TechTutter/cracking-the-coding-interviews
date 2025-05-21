@@ -12,6 +12,12 @@ export class EmptyStackError extends BaseError {
   }
 }
 
+export class EmptyVectorError extends BaseError {
+  constructor() {
+    super('Cannot pop from empty vector');
+  }
+}
+
 export class InvalidArgumentError extends BaseError {
   constructor(message: string = 'Invalid argument provided') {
     super(message);

@@ -44,11 +44,55 @@ The easiest way to run the project is by using Deno. Follow the setup guide at [
 - **Map / Dictionary** - with Hash Table
 - **TreeMap / Ordered Map**
 
-## Vector and String
+# Data Structures
+
+## Vector
+
+A dynamic array that resizes itself automatically when capacity is exceeded. Constant-time access by index, amortized constant-time insertion at the end.
+
+**Implementation** - See [Vector.ts](./src/data-structures/vector/Vector.ts)
+
+**Use Cases**
+
+- Core data structure used to build many other data structures / ADTs.
+- Compact storage of data for dynamic collection of items.
+
+**Complexity**
+
+| Operation   | Time   | Space | Note                     |
+| ----------- | ------ | ----- | ------------------------ |
+| `get(i)`    | O(1)   | O(1)  | Direct index access      |
+| `push(val)` | O(1)\* | O(n)  | Amortized, resize = O(n) |
+| `pop()`     | O(1)   | O(1)  | Remove last element      |
+| `resize()`  | O(n)   | O(n)  | Doubling capacity        |
+
+## StringBuilder
+
+A mutable string accumulator that allows efficient construction of strings through chained appends. Avoids repeated string allocations by storing chunks internally and joining them on demand.
+
+**Implementation** See [StringBuilder.ts](./src/data-structures//string-builder/StringBuilder.ts)
+
+**Use Cases**
+
+- Efficient string concatenation in loops or recursive operations.
+- Replaces repeated `+=` with amortized O(1) appends.
+- Useful for code generation, logging, or building large strings lazily.
+
+**Complexity**
+
+| Operation     | Time | Space | Note                                      |
+| ------------- | ---- | ----- | ----------------------------------------- |
+| `append(str)` | O(1) | O(1)  | Pushes to internal array                  |
+| `toString()`  | O(n) | O(n)  | Join all parts; cached for repeated calls |
+| `length`      | O(1) | O(1)  | Cached from `toString()`                  |
+
+> `toString()` uses a cached result to avoid recomputing joins unless mutated.
 
 ### Stack
 
 A stack is a _LIFO queue_ with two primary operations, push and pop.
+
+**Implementation** - Array Based Implementation. See [Stack.ts](./src/data-structures/stack/Stack.ts)
 
 **Use Cases**
 
@@ -56,8 +100,6 @@ A stack is a _LIFO queue_ with two primary operations, push and pop.
   - Brackets validation. Given an array of brackets (e.g [[{}]()]), every time you encounter an open bracket you push it to the stack, and when you encounter a closing one you pop the stack and check if the two values match. If it does not match, or you reach the end of the array of brackets with a non-empty stack, then the sequence is not valid.
   - CallStack of recursive methods - push an entry for every iteration of the function, and pop when it's done.
   - UNDO mechanism of text editors - push on change, pop on "undo".
-
-**Implementation** - Array Based Implementation. See [Stack.ts](./src/data-structures/stack/Stack.ts)
 
 **Complexity**
 
