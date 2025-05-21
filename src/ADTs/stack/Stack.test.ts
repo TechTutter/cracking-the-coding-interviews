@@ -1,4 +1,4 @@
-import { Stack } from "@data-structures/stack/Stack.ts";
+import { Stack } from "@ADTs/stack/Stack.ts";
 import { assertEquals, assertThrows } from "@std/assert";
 import { EmptyStackError } from "@models/Errors.ts";
 
