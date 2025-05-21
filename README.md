@@ -1,10 +1,8 @@
 # Table of Contents
 
-- [Vector and String](#vector-and-string)
-- [List]()
-  - [Stack]()
-  - [Queue]()
-  - [Heap]()
+- [Setup Guide](#setup-guide)
+- [Data Structures](#data-structures)
+- [ADTs](#adts)
 
 # Setup Guide
 
@@ -12,12 +10,14 @@ The easiest way to run the project is by using Deno. Follow the setup guide at [
 
 # Data Structures and ADTs
 
-**A data structure is a way of organizing data so that it can be used effectively**. An **Abstract Data Type** - ADT - **provides only the interface to which a data structure must adhere**, without giving any specific details about how something should be implemented. An example of an abstraction is a "List", which might be implemented with a Vector, or a Linked list.
+> **A data structure is a way of organizing data so that it can be used effectively**. An **Abstract Data Type** - ADT - **provides only the interface to which a data structure must adhere**, without giving any specific details about how something should be implemented.
+
+An example of an abstraction is a "List", which might be implemented with a Vector, or a Linked list.
 
 **The core data structures**, used on algorithms such as A\*, or upon which all ADTs are implemented, **are the following**:
 
-- **Vector**
-- **String**
+- [**Vector**](#vector)
+- [**StringBuilder**](#stringbuilder)
 - **Bitset** - a.k.a. binary set, bit/binary vector
 - **Disjoint set / Union-Find** - for algorithms e.g. Kruskal
 - **Linked List**
@@ -88,7 +88,9 @@ A mutable string accumulator that allows efficient construction of strings throu
 
 > `toString()` uses a cached result to avoid recomputing joins unless mutated.
 
-### Stack
+# ADTs
+
+## Stack
 
 A stack is a _LIFO queue_ with two primary operations, push and pop.
 
