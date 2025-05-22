@@ -23,7 +23,7 @@ An example of an abstraction is a "List", which might be implemented with a Vect
 - [**Linked List**](#linked-list)
   - [**Doubly Linked List**](#doubly-linked-list)
 - **Circular Buffer**
-- **Hash Table** - core structure used to implement maps and dictionaries.
+- [**Hash Table**](#hash-table) - core structure used to implement maps and dictionaries.
 - **Trees**
   - **Binary Tree**
   - **Binary Search Tree**
@@ -129,6 +129,29 @@ A doubly linked list supports bi-directional traversal and efficient insert/remo
 | `append(val)` | O(1) |                                                |
 | `get(index)`  | O(n) | Traverses from head or tail (whichever closer) |
 | `remove(val)` | O(n) | No need to track previous manually             |
+
+## Hash Table
+
+A hash table maps keys to values using a hash function and handles collisions via separate chaining. Provides near-constant time operations under ideal hash distribution.
+
+**Implementation** – See [HashTable.ts](./src/data-structures/hash-table/HashTable.ts)
+
+**Use Cases**
+
+- Fast key-value storage (e.g., maps, symbol tables)
+- Counting frequency (histograms, word counts)
+- Caching and lookup tables
+- Indexing for search/filter operations
+
+**Complexity**
+
+| Operation       | Time   | Note                             |
+| --------------- | ------ | -------------------------------- |
+| `set(key, val)` | O(1)\* | Amortized, depends on collisions |
+| `get(key)`      | O(1)\* | Same as above                    |
+| `remove(key)`   | O(1)\* | Needs search inside bucket       |
+
+> \* Worst-case time is O(n) if many keys collide in same bucket. A good hash function keeps it close to O(1).
 
 # ADTs
 
