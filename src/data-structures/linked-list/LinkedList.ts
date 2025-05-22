@@ -1,4 +1,9 @@
-import { ListNode } from "@data-structures/linked-list/ListNode.ts";
+export class ListNode<T> {
+  constructor(
+    public value: T,
+    public next: ListNode<T> | null = null
+  ) { }
+}
 
 export class LinkedList<T> {
   private head: ListNode<T> | null = null;

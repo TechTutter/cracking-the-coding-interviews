@@ -21,6 +21,7 @@ An example of an abstraction is a "List", which might be implemented with a Vect
 - **Bitset** - a.k.a. binary set, bit/binary vector
 - **Disjoint set / Union-Find** - for algorithms e.g. Kruskal
 - [**Linked List**](#linked-list)
+  - [**Doubly Linked List**](#doubly-linked-list)
 - **Circular Buffer**
 - **Hash Table** - core structure used to implement maps and dictionaries.
 - **Trees**
@@ -107,6 +108,27 @@ A mutable string accumulator that allows efficient construction of strings throu
 | `remove(val)` | O(n) | Scans list to find and unlink node   |
 
 > Optimized for mutation, not indexed access. Use arrays if random access is primary.
+
+### Doubly Linked List
+
+A doubly linked list supports bi-directional traversal and efficient insert/remove operations from both ends. Each node holds references to both next and previous nodes.
+
+**Implementation** – See [DoublyLinkedList.ts](./src/data-structures/linked-list/DoublyLinkedList.ts)
+
+**Use Cases**
+
+- Deques (double-ended queues)
+- Browser history navigation (back/forward)
+- LRU caches (used with hash map)
+- When frequent insertions/removals from both ends are needed
+
+**Complexity**
+
+| Operation     | Time | Note                                           |
+| ------------- | ---- | ---------------------------------------------- |
+| `append(val)` | O(1) |                                                |
+| `get(index)`  | O(n) | Traverses from head or tail (whichever closer) |
+| `remove(val)` | O(n) | No need to track previous manually             |
 
 # ADTs
 
