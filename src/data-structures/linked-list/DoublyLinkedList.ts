@@ -119,7 +119,7 @@ export class DoublyLinkedList<T> {
     let current = this.head;
     return {
       next(): IteratorResult<T> {
-        if (!current) return { done: true, value: undefined as any };
+        if (!current) return { done: true, value: undefined as unknown as T };
         const value = current.value;
         current = current.next;
         return { done: false, value };
