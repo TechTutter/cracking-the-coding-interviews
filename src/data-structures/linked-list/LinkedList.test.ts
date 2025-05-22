@@ -1,6 +1,5 @@
-import { assertEquals, assertThrows } from "@std/assert";
+import { assertEquals } from "@std/assert";
 import { LinkedList } from "@data-structures/linked-list/LinkedList.ts";
-import { OutOfBoundsError } from "@models/Errors.ts";
 
 Deno.test("LinkedList", async (t) => {
   await t.step("isEmpty", () => {
@@ -73,13 +72,6 @@ Deno.test("LinkedList", async (t) => {
     assertEquals(iterator.next().value, 2);
     assertEquals(iterator.next().value, 3);
     assertEquals(iterator.next().done, true);
-  });
-
-  await t.step("get throws boundary error", () => {
-    const list = new LinkedList();
-    list.append(1);
-    assertThrows(() => list.get(-1), OutOfBoundsError);
-    assertThrows(() => list.get(3), OutOfBoundsError);
   });
 
 });

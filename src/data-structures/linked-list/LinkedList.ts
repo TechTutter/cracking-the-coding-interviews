@@ -1,5 +1,4 @@
 import { ListNode } from "@data-structures/linked-list/ListNode.ts";
-import { OutOfBoundsError } from "@models/Errors.ts";
 
 export class LinkedList<T> {
   private head: ListNode<T> | null = null;
@@ -72,7 +71,7 @@ export class LinkedList<T> {
   }
 
   get(index: number): T | null {
-    if (index < 0 || index >= this.size) throw new OutOfBoundsError();
+    if (index < 0 || index >= this.size) return null;
     let current = this.head;
     let i = 0;
     while (i < index) {

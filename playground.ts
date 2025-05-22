@@ -1,8 +1,8 @@
+
 import { Log } from "@utils/logger.ts";
 
 function main() {
-  try {
-
+  try { /* eslint-disable-next-line*/
   } catch (error) {
     Log.error(error);
   }
