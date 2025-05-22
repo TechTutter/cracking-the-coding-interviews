@@ -1,0 +1,2 @@
+deno test || exit 1
+deno lint --compact || exit 1
