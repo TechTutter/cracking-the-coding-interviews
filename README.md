@@ -1,6 +1,7 @@
 # Table of Contents
 
 - [Setup Guide](#setup-guide)
+- [Introduction](#introduction)]
 - [Data Structures](#data-structures)
 - [ADTs](#adts)
 
@@ -8,7 +9,7 @@
 
 The easiest way to run the project is by using Deno. Follow the setup guide at [docs.deno.com](https://docs.deno.com/runtime/)
 
-# Data Structures and ADTs
+# Introduction
 
 > **A data structure is a way of organizing data so that it can be used effectively**. An **Abstract Data Type** - ADT - **provides only the interface to which a data structure must adhere**, without giving any specific details about how something should be implemented.
 
@@ -25,7 +26,8 @@ An example of an abstraction is a "List", which might be implemented with a Vect
 - **Circular Buffer**
 - [**Hash Table**](#hash-table) - core structure used to implement maps and dictionaries.
 - [**Tree**](#tree)
-  - **Binary Tree**
+  - [**Binary Tree**](#binary-tree)
+  - [**Binary Search Tree**](#binary-search-tree)
   - **Binary Search Tree**
   - **Heap**
   - **Trie**
@@ -177,6 +179,61 @@ A hash table maps keys to values using a hash function and handles collisions vi
 > N = Number of nodes in the tree.
 > H = Height of the tree.
 > The `add` operation's complexity is dominated by the `find` operation to locate the parent.
+
+### Binary Tree
+
+A tree data structure where each node has at most two children, referred to as the left child and the right child. Unlike Binary Search Trees, Binary Trees do not have any specific ordering of elements.
+
+**Implementation** - See BinaryTree.ts
+
+**Use Cases**
+
+-   Foundation for more specialized tree structures like Binary Search Trees, Heaps, and AVL trees.
+-   Representing hierarchical structures with a maximum of two branches per node, e.g., expression trees (for mathematical expressions).
+-   Basic decision trees.
+
+**Complexity** (for the generic Binary Tree implementation provided)
+
+| Operation                 | Time | Space | Note                                                                 |
+| ------------------------- | ---- | ----- | -------------------------------------------------------------------- |
+| `find(value)`             | O(N) | O(W)  | Traverses the tree (BFS) to find a node. W = max width of the tree.  |
+| `bfs(callback)`           | O(N) | O(W)  | Visits all N nodes. W = max width of the tree (for BFS queue).       |
+| `dfs(callback)`    | O(N) | O(H)  | Visits all N nodes. H = height of the tree (for recursion stack).    |
+
+> N = Number of nodes in the tree.
+> H = Height of the tree.
+> W = Maximum width of the tree.
+> Note: Generic insertion/deletion methods are not typically part of a base Binary Tree class without further specification (e.g., how/where to insert). Nodes are usually linked manually or by specific tree-building algorithms.
+
+### Binary Search Tree (BST)
+
+A binary tree with a specific ordering property: for any given node, all values in its left subtree are less than the node's value, and all values in its right subtree are greater than the node's value. This property allows for efficient searching, insertion, and deletion. (This implementation assumes duplicates, if allowed, are inserted into the right subtree).
+
+**Implementation** - See BST.ts
+
+**Use Cases**
+
+-   Efficient searching, insertion, and deletion of items when data needs to be ordered.
+-   Implementing dynamic sets and lookup tables (e.g., the underlying structure for `Map` or `Set` ADTs where element order is important).
+-   Used in database indexing.
+
+**Complexity**
+
+| Operation                 | Average Time | Worst Time | Space (Avg/Worst) | Note                                                                 |
+| ------------------------- | ------------ | ---------- | ----------------- | -------------------------------------------------------------------- |
+| `insert(value)`           | O(log N)     | O(N)       | O(H)              | H is height; O(log N) for balanced, O(N) for skewed.                 |
+| `find(value)`             | O(log N)     | O(N)       | O(H)              |                                                                      |
+| `remove(value)`           | O(log N)     | O(N)       | O(H)              | Involves finding the node and its successor/predecessor.             |
+| `findMin()` / `findMax()` | O(log N)     | O(N)       | O(H)              | Traverses to the leftmost/rightmost node.                            |
+| `bfs(callback)`           | O(N)         | O(N)       | O(W) / O(N)       | W = max width. Worst case space for skewed tree is O(N) for queue.   |
+| `dfs(callback)`    | O(N)         | O(N)       | O(H)              |                                                                      |
+
+> N = Number of nodes in the tree.
+> H = Height of the tree. Average H is O(log N) for a balanced tree, worst H is O(N) for a skewed tree.
+> W = Maximum width of the tree.
+> **Average case** complexities assume the tree is reasonably balanced.
+> **Worst case** complexities occur when the tree becomes skewed (resembling a linked list).
+
 
 
 
