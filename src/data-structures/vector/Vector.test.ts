@@ -1,6 +1,7 @@
 import { assertEquals, assertThrows } from "@std/assert";
 import { Vector } from "@data-structures/vector/Vector.ts";
 import { EmptyVectorError } from "@models/Errors.ts";
+
 Deno.test("Vector", async (t) => {
   await t.step("size", () => {
     const vector = new Vector<number>(4);

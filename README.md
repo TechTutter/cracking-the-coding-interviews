@@ -24,7 +24,7 @@ An example of an abstraction is a "List", which might be implemented with a Vect
   - [**Doubly Linked List**](#doubly-linked-list)
 - **Circular Buffer**
 - [**Hash Table**](#hash-table) - core structure used to implement maps and dictionaries.
-- **Trees**
+- [**Tree**](#tree)
   - **Binary Tree**
   - **Binary Search Tree**
   - **Heap**
@@ -152,6 +152,33 @@ A hash table maps keys to values using a hash function and handles collisions vi
 | `remove(key)`   | O(1)\* | Needs search inside bucket       |
 
 > \* Worst-case time is O(n) if many keys collide in same bucket. A good hash function keeps it close to O(1).
+
+## Tree
+
+**Implementation** - See [Tree.ts](./src/data-structures/tree/Tree.ts)
+
+**Use Cases**
+
+- Representing hierarchical data:
+  - File systems (directories and files)
+  - Organization charts
+  - Document Object Model (DOM) in web pages
+- Decision trees in machine learning.
+- Representing family trees or taxonomies.
+
+**Complexity** (for the generic Tree implementation provided)
+
+| Operation                      | Time | Space | Note                                                                 |
+| ------------------------------ | ---- | ----- | -------------------------------------------------------------------- |
+| `Tree.add(value, parentValue)` | O(N) | O(1)  | Involves finding the parent node (O(N)) then adding child (O(1)).    |
+| `TreeNode.addChild(value)`     | O(1) | O(1)  | Adds a child to a specific node.                                     |
+| `Tree.find(value)`             | O(N) | O(N)  | Traverses the tree (BFS) to find the node. Space for BFS queue.      |
+
+> N = Number of nodes in the tree.
+> H = Height of the tree.
+> The `add` operation's complexity is dominated by the `find` operation to locate the parent.
+
+
 
 # ADTs
 
