@@ -21,7 +21,7 @@ An example of an abstraction is a "List", which might be implemented with a Vect
 
 - [**Vector**](#vector)
 - [**StringBuilder**](#stringbuilder)
-- **Bitset** - a.k.a. binary set, bit/binary vector
+- [**Bitset**](#bitset) - a.k.a. binary set, bit/binary vector
 - **Disjoint set / Union-Find** - for algorithms e.g. Kruskal
 - [**Linked List**](#linked-list)
   - [**Doubly Linked List**](#doubly-linked-list)
@@ -30,12 +30,11 @@ An example of an abstraction is a "List", which might be implemented with a Vect
 - [**Tree**](#tree)
   - [**Binary Tree**](#binary-tree)
   - [**Binary Search Tree (BST)**](#binary-search-tree-bst)
-  - **Binary Search Tree**
   - **Heap**
   - **Trie**
   - **AVL Tree**
   - **Segment Tree / Fenwick Tree (BIT)** - for efficient range queries
-- **Graph**
+- [**Graph**](#graph)
 
 **The core ADTs for a SWE role** built on top of these data structure **are the following:**
 
@@ -218,7 +217,7 @@ A BitSet (also known as a bit array, bit vector, or bit string) is an array data
 
 A tree data structure where each node has at most two children, referred to as the left child and the right child. Unlike Binary Search Trees, Binary Trees do not have any specific ordering of elements.
 
-**Implementation** - See BinaryTree.ts
+**Implementation** - See [BinaryTree.ts](./src/data-structures/tree/BinaryTree.ts)
 
 **Use Cases**
 
@@ -243,7 +242,7 @@ A tree data structure where each node has at most two children, referred to as t
 
 A binary tree with a specific ordering property: for any given node, all values in its left subtree are less than the node's value, and all values in its right subtree are greater than the node's value. This property allows for efficient searching, insertion, and deletion. (This implementation assumes duplicates, if allowed, are inserted into the right subtree).
 
-**Implementation** - See BST.ts
+**Implementation** - See [BST.ts](./src/data-structures/tree/BST.ts)
 
 **Use Cases**
 
@@ -267,6 +266,32 @@ A binary tree with a specific ordering property: for any given node, all values 
 > W = Maximum width of the tree.
 > **Average case** complexities assume the tree is reasonably balanced.
 > **Worst case** complexities occur when the tree becomes skewed (resembling a linked list).
+
+## Graph
+
+A graph is a non-linear data structure consisting of vertices (nodes) connected by edges. This implementation uses an adjacency list representation, which is efficient for sparse graphs and provides good performance for most operations.
+
+**Implementation** - See [Graph.ts](./src/data-structures/graph/Graph.ts)
+
+**Use Cases**
+
+- Social networks (vertices as users, edges as connections)
+- Network routing (vertices as routers, edges as connections)
+
+**Complexity**
+
+| Operation      | Time   | Space | Note                                |
+| -------------- | ------ | ----- | ----------------------------------- |
+| `addVertex(v)` | O(1)   | O(1)  | Direct map insertion                |
+| `addEdge(v,w)` | O(1)   | O(1)  | Direct list append                  |
+| `removeVertex` | O(V+E) | O(1)  | V = vertices, E = edges to remove   |
+| `removeEdge`   | O(E)   | O(1)  | E = edges to scan in adjacency list |
+| `hasVertex`    | O(1)   | O(1)  | Direct map lookup                   |
+| `hasEdge`      | O(E)   | O(1)  | E = edges to scan in adjacency list |
+| `getVertices`  | O(V)   | O(V)  | V = number of vertices              |
+| `getEdges`     | O(1)   | O(E)  | E = number of edges for vertex      |
+
+> The implementation supports both directed and undirected graphs, with weighted edges optional.
 
 # ADTs
 

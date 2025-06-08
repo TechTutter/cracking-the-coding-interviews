@@ -30,4 +30,28 @@ export class InvalidArgumentError extends BaseError {
   }
 }
 
+export class VertexNotFoundError extends BaseError {
+  constructor(vertex: string | number) {
+    super(`Vertex ${vertex} not found in graph`);
+  }
+}
+
+export class EdgeNotFoundError extends BaseError {
+  constructor(from: string | number, to: string | number) {
+    super(`Edge from ${from} to ${to} not found in graph`);
+  }
+}
+
+export class DuplicateVertexError extends BaseError {
+  constructor(vertex: string | number) {
+    super(`Vertex ${vertex} already exists in graph`);
+  }
+}
+
+export class DuplicateEdgeError extends BaseError {
+  constructor(from: string | number, to: string | number) {
+    super(`Edge from ${from} to ${to} already exists in graph`);
+  }
+}
+
 

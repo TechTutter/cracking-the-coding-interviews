@@ -4,4 +4,7 @@
 # Node modules (if any, for tooling)
 node_modules/
 
+# Personal Settings
+.cursor
+
 
