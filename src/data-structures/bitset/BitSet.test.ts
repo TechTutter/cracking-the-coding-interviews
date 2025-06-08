@@ -1,4 +1,5 @@
 import { assertEquals, assertThrows, assert } from "@std/assert";
+import { OutOfBoundsError } from "@models/Errors.ts";
 import { BitSet } from "@data-structures/bitset/BitSet.ts";
 
 Deno.test("BitSet", async (t) => {
@@ -76,17 +77,17 @@ Deno.test("BitSet", async (t) => {
     const bs = new BitSet(16);
     assertThrows(
       () => bs.set(-1),
-      RangeError,
+      OutOfBoundsError,
       "Bit index -1 is out of bounds (0-15)."
     );
     assertThrows(
       () => bs.get(16),
-      RangeError,
+      OutOfBoundsError,
       "Bit index 16 is out of bounds (0-15)."
     );
     assertThrows(
       () => bs.clear(100),
-      RangeError,
+      OutOfBoundsError,
       "Bit index 100 is out of bounds (0-15)."
     );
   });
