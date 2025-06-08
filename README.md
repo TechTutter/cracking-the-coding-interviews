@@ -293,6 +293,28 @@ A graph is a non-linear data structure consisting of vertices (nodes) connected 
 
 > The implementation supports both directed and undirected graphs, with weighted edges optional.
 
+## Circular Buffer
+
+A circular buffer (also known as a ring buffer) is a fixed-size buffer that wraps around when it reaches its capacity. It's particularly useful for implementing queues with a fixed size and for handling data streams where old data can be overwritten.
+
+**Implementation** - See [CircularBuffer.ts](./src/data-structures/circular-buffer/CircularBuffer.ts)
+
+**Use Cases**
+
+- Implementing Dequeue ADT
+- Audio/Video streaming buffers
+- Network packet buffering
+
+**Complexity**
+
+| Operation      | Time | Space | Note                                   |
+| -------------- | ---- | ----- | -------------------------------------- |
+| `enqueue(val)` | O(1) | O(1)  | Constant time insertion                |
+| `dequeue()`    | O(1) | O(1)  | Constant time removal                  |
+| `peek()`       | O(1) | O(1)  | Constant time access to oldest element |
+
+> The implementation uses a fixed-size array with head and tail pointers to achieve O(1) operations for enqueue and dequeue.
+
 # ADTs
 
 ## Stack

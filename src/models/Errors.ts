@@ -54,4 +54,16 @@ export class DuplicateEdgeError extends BaseError {
   }
 }
 
+export class BufferFullError extends BaseError {
+  constructor() {
+    super('Circular buffer is full');
+  }
+}
+
+export class BufferEmptyError extends BaseError {
+  constructor() {
+    super('Circular buffer is empty');
+  }
+}
+
 
