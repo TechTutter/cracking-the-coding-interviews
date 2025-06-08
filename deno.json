@@ -4,7 +4,8 @@
     "prepare": "husky install",
     "test": "deno test",
     "lint": "deno lint --compact",
-    "check": "deno check"
+    "check": "deno check",
+    "check-all": "deno task lint && deno task test && deno task check"
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1",
