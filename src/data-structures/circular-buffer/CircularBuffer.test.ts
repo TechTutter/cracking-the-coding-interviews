@@ -1,4 +1,4 @@
-import { assertEquals, assertThrows } from "https://deno.land/std@0.220.1/assert/mod.ts";
+import { assertEquals, assertThrows } from "@std/assert";
 import { CircularBuffer } from './CircularBuffer.ts';
 import { BufferFullError, BufferEmptyError } from '../../models/Errors.ts';
 
