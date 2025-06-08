@@ -2,7 +2,8 @@ import { EmptyVectorError } from "@models/Errors.ts";
 
 /**
  * A vector is a dynamic array that can grow or shrink as needed.
- * In most programming languages, vectors are pre-built, in TS you can simply use the `Array` type.
+ * In most programming languages, vectors are pre-built.
+ * In TS you can simply use the `Array` type.
  */
 export class Vector<T> {
   private data: (T | undefined)[];

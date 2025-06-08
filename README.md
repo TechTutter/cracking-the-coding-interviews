@@ -1,7 +1,7 @@
 # Table of Contents
 
 - [Setup Guide](#setup-guide)
-- [Introduction](#introduction)]
+- [Introduction](#introduction)
 - [Data Structures](#data-structures)
 - [ADTs](#adts)
 
@@ -11,7 +11,9 @@ The easiest way to run the project is by using Deno. Follow the setup guide at [
 
 # Introduction
 
-> **A data structure is a way of organizing data so that it can be used effectively**. An **Abstract Data Type** - ADT - **provides only the interface to which a data structure must adhere**, without giving any specific details about how something should be implemented.
+> **A data structure is a way of organizing data so that it can be used effectively**.
+
+> An **Abstract Data Type** - ADT - **provides only the interface to which a data structure must adhere**, without giving any specific details about how something should be implemented.
 
 An example of an abstraction is a "List", which might be implemented with a Vector, or a Linked list.
 
@@ -27,7 +29,7 @@ An example of an abstraction is a "List", which might be implemented with a Vect
 - [**Hash Table**](#hash-table) - core structure used to implement maps and dictionaries.
 - [**Tree**](#tree)
   - [**Binary Tree**](#binary-tree)
-  - [**Binary Search Tree**](#binary-search-tree)
+  - [**Binary Search Tree (BST)**](#binary-search-tree-bst)
   - **Binary Search Tree**
   - **Heap**
   - **Trie**
@@ -46,6 +48,17 @@ An example of an abstraction is a "List", which might be implemented with a Vect
 - **Multiset / Bag** - With BST
 - **Map / Dictionary** - with Hash Table
 - **TreeMap / Ordered Map**
+
+Core Concepts:
+
+- **Recursion**
+- **OOP notions**
+
+Core Algorithms:
+
+- MergeSort
+- QuickSort
+- Binary Search
 
 # Data Structures
 
@@ -155,6 +168,27 @@ A hash table maps keys to values using a hash function and handles collisions vi
 
 > \* Worst-case time is O(n) if many keys collide in same bucket. A good hash function keeps it close to O(1).
 
+## BitSet
+
+A BitSet (also known as a bit array, bit vector, or bit string) is an array data structure that compactly stores bits. It can be used to implement a simple set data structure for a dense universe of small integers. Each bit corresponds to a boolean value (true/false or 1/0).
+
+**Implementation** - See [BitSet.ts](./src/data-structures/bitset/BitSet.ts)
+
+**Use Cases**
+
+- Representing a set of small integers or flags efficiently.
+- Tracking presence/absence of items from a known, fixed-size domain (e.g., character sets, available resources).
+- Implementing Bloom filters (probabilistic data structure).
+- Optimizations in algorithms where many boolean flags are needed (e.g., marking visited nodes in graph traversal for dense graphs with integer-labeled nodes).
+- Low-level programming, hardware register manipulation.
+
+**Complexity**
+
+| Operation    | Time | Note                                |
+| ------------ | ---- | ----------------------------------- |
+| `set(index)` | O(1) | Direct bitwise operation on a word. |
+| `get(index)` | O(1) | Direct bitwise operation on a word. |
+
 ## Tree
 
 **Implementation** - See [Tree.ts](./src/data-structures/tree/Tree.ts)
@@ -170,11 +204,11 @@ A hash table maps keys to values using a hash function and handles collisions vi
 
 **Complexity** (for the generic Tree implementation provided)
 
-| Operation                      | Time | Space | Note                                                                 |
-| ------------------------------ | ---- | ----- | -------------------------------------------------------------------- |
-| `Tree.add(value, parentValue)` | O(N) | O(1)  | Involves finding the parent node (O(N)) then adding child (O(1)).    |
-| `TreeNode.addChild(value)`     | O(1) | O(1)  | Adds a child to a specific node.                                     |
-| `Tree.find(value)`             | O(N) | O(N)  | Traverses the tree (BFS) to find the node. Space for BFS queue.      |
+| Operation                      | Time | Space | Note                                                              |
+| ------------------------------ | ---- | ----- | ----------------------------------------------------------------- |
+| `Tree.add(value, parentValue)` | O(N) | O(1)  | Involves finding the parent node (O(N)) then adding child (O(1)). |
+| `TreeNode.addChild(value)`     | O(1) | O(1)  | Adds a child to a specific node.                                  |
+| `Tree.find(value)`             | O(N) | O(N)  | Traverses the tree (BFS) to find the node. Space for BFS queue.   |
 
 > N = Number of nodes in the tree.
 > H = Height of the tree.
@@ -188,17 +222,17 @@ A tree data structure where each node has at most two children, referred to as t
 
 **Use Cases**
 
--   Foundation for more specialized tree structures like Binary Search Trees, Heaps, and AVL trees.
--   Representing hierarchical structures with a maximum of two branches per node, e.g., expression trees (for mathematical expressions).
--   Basic decision trees.
+- Foundation for more specialized tree structures like Binary Search Trees, Heaps, and AVL trees.
+- Representing hierarchical structures with a maximum of two branches per node, e.g., expression trees (for mathematical expressions).
+- Basic decision trees.
 
 **Complexity** (for the generic Binary Tree implementation provided)
 
-| Operation                 | Time | Space | Note                                                                 |
-| ------------------------- | ---- | ----- | -------------------------------------------------------------------- |
-| `find(value)`             | O(N) | O(W)  | Traverses the tree (BFS) to find a node. W = max width of the tree.  |
-| `bfs(callback)`           | O(N) | O(W)  | Visits all N nodes. W = max width of the tree (for BFS queue).       |
-| `dfs(callback)`    | O(N) | O(H)  | Visits all N nodes. H = height of the tree (for recursion stack).    |
+| Operation       | Time | Space | Note                                                                |
+| --------------- | ---- | ----- | ------------------------------------------------------------------- |
+| `find(value)`   | O(N) | O(W)  | Traverses the tree (BFS) to find a node. W = max width of the tree. |
+| `bfs(callback)` | O(N) | O(W)  | Visits all N nodes. W = max width of the tree (for BFS queue).      |
+| `dfs(callback)` | O(N) | O(H)  | Visits all N nodes. H = height of the tree (for recursion stack).   |
 
 > N = Number of nodes in the tree.
 > H = Height of the tree.
@@ -213,29 +247,26 @@ A binary tree with a specific ordering property: for any given node, all values 
 
 **Use Cases**
 
--   Efficient searching, insertion, and deletion of items when data needs to be ordered.
--   Implementing dynamic sets and lookup tables (e.g., the underlying structure for `Map` or `Set` ADTs where element order is important).
--   Used in database indexing.
+- Efficient searching, insertion, and deletion of items when data needs to be ordered.
+- Implementing dynamic sets and lookup tables (e.g., the underlying structure for `Map` or `Set` ADTs where element order is important).
+- Used in database indexing.
 
 **Complexity**
 
-| Operation                 | Average Time | Worst Time | Space (Avg/Worst) | Note                                                                 |
-| ------------------------- | ------------ | ---------- | ----------------- | -------------------------------------------------------------------- |
-| `insert(value)`           | O(log N)     | O(N)       | O(H)              | H is height; O(log N) for balanced, O(N) for skewed.                 |
-| `find(value)`             | O(log N)     | O(N)       | O(H)              |                                                                      |
-| `remove(value)`           | O(log N)     | O(N)       | O(H)              | Involves finding the node and its successor/predecessor.             |
-| `findMin()` / `findMax()` | O(log N)     | O(N)       | O(H)              | Traverses to the leftmost/rightmost node.                            |
-| `bfs(callback)`           | O(N)         | O(N)       | O(W) / O(N)       | W = max width. Worst case space for skewed tree is O(N) for queue.   |
-| `dfs(callback)`    | O(N)         | O(N)       | O(H)              |                                                                      |
+| Operation                 | Average Time | Worst Time | Space (Avg/Worst) | Note                                                               |
+| ------------------------- | ------------ | ---------- | ----------------- | ------------------------------------------------------------------ |
+| `insert(value)`           | O(log N)     | O(N)       | O(H)              | H is height; O(log N) for balanced, O(N) for skewed.               |
+| `find(value)`             | O(log N)     | O(N)       | O(H)              |                                                                    |
+| `remove(value)`           | O(log N)     | O(N)       | O(H)              | Involves finding the node and its successor/predecessor.           |
+| `findMin()` / `findMax()` | O(log N)     | O(N)       | O(H)              | Traverses to the leftmost/rightmost node.                          |
+| `bfs(callback)`           | O(N)         | O(N)       | O(W) / O(N)       | W = max width. Worst case space for skewed tree is O(N) for queue. |
+| `dfs(callback)`           | O(N)         | O(N)       | O(H)              |                                                                    |
 
 > N = Number of nodes in the tree.
 > H = Height of the tree. Average H is O(log N) for a balanced tree, worst H is O(N) for a skewed tree.
 > W = Maximum width of the tree.
 > **Average case** complexities assume the tree is reasonably balanced.
 > **Worst case** complexities occur when the tree becomes skewed (resembling a linked list).
-
-
-
 
 # ADTs
 
