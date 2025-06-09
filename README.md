@@ -30,7 +30,7 @@ An example of an abstraction is a "List", which might be implemented with a Vect
 - [**Tree**](#tree)
   - [**Binary Tree**](#binary-tree)
   - [**Binary Search Tree (BST)**](#binary-search-tree-bst)
-  - **Heap**
+  - [**Heap**](#heap)
   - **Trie**
   - **AVL Tree**
   - **Segment Tree / Fenwick Tree (BIT)** - for efficient range queries
@@ -267,6 +267,52 @@ A binary tree with a specific ordering property: for any given node, all values 
 > **Average case** complexities assume the tree is reasonably balanced.
 > **Worst case** complexities occur when the tree becomes skewed (resembling a linked list).
 
+### Heap
+
+A binary heap implementation that can be used as both a min-heap and max-heap through a customizable comparator function. The heap property ensures that each node is smaller (min-heap) or larger (max-heap) than its children.
+
+**Implementation** - See [Heap.ts](./src/data-structures/heap/Heap.ts)
+
+**Use Cases**
+
+1. Priority Queues - task scheduling where tasks have different priorities
+2. Heap Sort - Can be used to implement an efficient sorting algorithm
+3. Graph Algorithms - Useful in algorithms like Dijkstra's shortest path
+4. Event-driven Systems - Managing events based on their timestamps
+
+**Complexity**
+
+| Operation   | Time     | Space | Note                                    |
+| ----------- | -------- | ----- | --------------------------------------- |
+| `push(val)` | O(log n) | O(1)  | Sift up after insertion                 |
+| `pop()`     | O(log n) | O(1)  | Sift down after removing root           |
+| `peek()`    | O(1)     | O(1)  | Direct access to root                   |
+| `heapify()` | O(n)     | O(1)  | More efficient than n individual pushes |
+
+**Example Usage**
+
+```typescript
+// Min Heap
+const minHeap = new Heap<number>((a, b) => a - b);
+minHeap.push(5).push(3).push(7);
+console.log(minHeap.pop()); // 3
+
+// Max Heap
+const maxHeap = new Heap<number>((a, b) => b - a);
+maxHeap.push(5).push(3).push(7);
+console.log(maxHeap.pop()); // 7
+
+// Custom Objects
+interface Task {
+  priority: number;
+  name: string;
+}
+const taskHeap = new Heap<Task>((a, b) => a.priority - b.priority);
+taskHeap.push({ priority: 3, name: "Low" });
+taskHeap.push({ priority: 1, name: "High" });
+console.log(taskHeap.pop()?.name); // "High"
+```
+
 ## Graph
 
 A graph is a non-linear data structure consisting of vertices (nodes) connected by edges. This implementation uses an adjacency list representation, which is efficient for sparse graphs and provides good performance for most operations.
@@ -314,57 +360,6 @@ A circular buffer (also known as a ring buffer) is a fixed-size buffer that wrap
 | `peek()`       | O(1) | O(1)  | Constant time access to oldest element |
 
 > The implementation uses a fixed-size array with head and tail pointers to achieve O(1) operations for enqueue and dequeue.
-
-## Heap
-
-A binary heap implementation that can be used as both a min-heap and max-heap through a customizable comparator function.
-
-### Implementation Details
-
-- Uses an array-based implementation for efficient memory usage
-- Supports both min-heap and max-heap through comparator function
-- O(log n) for push and pop operations
-- O(1) for peek operation
-- O(n) for heapify operation
-
-### Best Use Cases
-
-1. Priority Queues - Perfect for task scheduling where tasks have different priorities
-2. Heap Sort - Can be used to implement an efficient sorting algorithm
-3. Graph Algorithms - Useful in algorithms like Dijkstra's shortest path
-4. Event-driven Systems - Managing events based on their timestamps
-5. Resource Management - Allocating resources based on priority
-
-### Core Concepts
-
-- Binary Heap: A complete binary tree where each node is smaller (min-heap) or larger (max-heap) than its children
-- Heapify: The process of converting an array into a heap
-- Sift Up/Down: Operations to maintain heap property after modifications
-- Comparator: Function that determines the ordering of elements
-
-### Example Usage
-
-```typescript
-// Min Heap
-const minHeap = new Heap<number>((a, b) => a - b);
-minHeap.push(5).push(3).push(7);
-console.log(minHeap.pop()); // 3
-
-// Max Heap
-const maxHeap = new Heap<number>((a, b) => b - a);
-maxHeap.push(5).push(3).push(7);
-console.log(maxHeap.pop()); // 7
-
-// Custom Objects
-interface Task {
-  priority: number;
-  name: string;
-}
-const taskHeap = new Heap<Task>((a, b) => a.priority - b.priority);
-taskHeap.push({ priority: 3, name: "Low" });
-taskHeap.push({ priority: 1, name: "High" });
-console.log(taskHeap.pop()?.name); // "High"
-```
 
 # ADTs
 

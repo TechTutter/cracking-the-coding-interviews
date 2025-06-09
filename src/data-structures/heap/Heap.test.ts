@@ -1,5 +1,5 @@
 import { assertEquals } from "@std/assert";
-import { Heap } from "./Heap.ts";
+import { Heap, MaxHeap, MinHeap } from "./Heap.ts";
 
 Deno.test("Heap - constructor", () => {
   const minHeap = new Heap<number>((a, b) => a - b);
@@ -80,4 +80,33 @@ Deno.test("Heap - custom object comparison", () => {
   assertEquals(heap.pop()?.name, "High");
   assertEquals(heap.pop()?.name, "Medium");
   assertEquals(heap.pop()?.name, "Low");
-}); 
+});
+
+Deno.test("MinHeap - constructor", () => {
+  const minHeap = new MinHeap<number>([5, 3, 7, 1, 9]);
+  assertEquals(minHeap.size, 5);
+  assertEquals(minHeap.peek(), 1);
+});
+
+Deno.test("MinHeap - push and pop", () => {
+  const minHeap = new MinHeap<number>();
+  minHeap.push(5).push(3).push(7);
+  assertEquals(minHeap.size, 3);
+  assertEquals(minHeap.pop(), 3);
+});
+
+Deno.test("MaxHeap - constructor", () => {
+  const maxHeap = new MaxHeap<number>([5, 3, 7, 1, 9]);
+  assertEquals(maxHeap.size, 5);
+  assertEquals(maxHeap.peek(), 9);
+});
+
+Deno.test("MaxHeap - push and pop", () => {
+  const maxHeap = new MaxHeap<number>();
+  maxHeap.push(5).push(3).push(7);
+  assertEquals(maxHeap.size, 3);
+  assertEquals(maxHeap.pop(), 7);
+});
+
+
+
