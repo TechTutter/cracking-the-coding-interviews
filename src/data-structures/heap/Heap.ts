@@ -12,12 +12,21 @@ export class Heap<T> {
     }
   }
 
+  /**
+   * Converts an array into a heap by sifting down all non-leaf nodes.
+   * Time complexity: O(n) - more efficient than sifting up each element O(n log n)
+   */
   private heapify(): void {
     for (let i = Math.floor(this.size / 2) - 1; i >= 0; i--) {
       this.siftDown(i);
     }
   }
 
+  /**
+   * Moves an element up the heap until it satisfies the heap property.
+   * Used after inserting a new element at the end of the heap.
+   * Time complexity: O(log n)
+   */
   private siftUp(index: number): void {
     let current = index;
     let parent = this.getParentIndex(current);
@@ -29,6 +38,11 @@ export class Heap<T> {
     }
   }
 
+  /**
+   * Moves an element down the heap until it satisfies the heap property.
+   * Used after removing the root or heapifying the array.
+   * Time complexity: O(log n)
+   */
   private siftDown(index: number): void {
     const current = index;
     let smallest = current;
@@ -104,4 +118,18 @@ export class Heap<T> {
   toArray(): T[] {
     return [...this.heap];
   }
-} 
+}
+
+export class MinHeap<T extends number> extends Heap<T> {
+  constructor(items?: T[]) {
+    super((a, b) => a - b, items);
+  }
+}
+
+export class MaxHeap<T extends number> extends Heap<T> {
+  constructor(items?: T[]) {
+    super((a, b) => b - a, items);
+  }
+}
+
+
