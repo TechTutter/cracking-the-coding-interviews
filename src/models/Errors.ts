@@ -66,4 +66,3 @@ export class BufferEmptyError extends BaseError {
   }
 }
 
-
