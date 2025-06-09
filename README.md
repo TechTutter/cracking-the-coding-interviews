@@ -32,7 +32,7 @@ An example of an abstraction is a "List", which might be implemented with a Vect
   - [**Binary Search Tree (BST)**](#binary-search-tree-bst)
   - [**Heap**](#heap)
   - **Trie**
-  - **AVL Tree**
+  - [**AVL Tree**](#avl-tree)
   - **Segment Tree / Fenwick Tree (BIT)** - for efficient range queries
 - [**Graph**](#graph)
 
@@ -289,29 +289,28 @@ A binary heap implementation that can be used as both a min-heap and max-heap th
 | `peek()`    | O(1)     | O(1)  | Direct access to root                   |
 | `heapify()` | O(n)     | O(1)  | More efficient than n individual pushes |
 
-**Example Usage**
+### AVL Tree
 
-```typescript
-// Min Heap
-const minHeap = new Heap<number>((a, b) => a - b);
-minHeap.push(5).push(3).push(7);
-console.log(minHeap.pop()); // 3
+A self-balancing binary search tree where the heights of the left and right subtrees of any node differ by at most one.
 
-// Max Heap
-const maxHeap = new Heap<number>((a, b) => b - a);
-maxHeap.push(5).push(3).push(7);
-console.log(maxHeap.pop()); // 7
+**Implementation** - See [AVLTree.ts](./src/data-structures/tree/AVLTree.ts)
 
-// Custom Objects
-interface Task {
-  priority: number;
-  name: string;
-}
-const taskHeap = new Heap<Task>((a, b) => a.priority - b.priority);
-taskHeap.push({ priority: 3, name: "Low" });
-taskHeap.push({ priority: 1, name: "High" });
-console.log(taskHeap.pop()?.name); // "High"
-```
+**Use Cases**
+
+- When you need guaranteed O(log n) operations
+- When the tree might be frequently modified
+- When you need a balanced tree without manual rebalancing
+
+**Complexity**
+
+| Operation   | Time     | Space | Note                                   |
+| ----------- | -------- | ----- | -------------------------------------- |
+| `insert(v)` | O(log n) | O(1)  | Includes rebalancing if needed         |
+| `remove(v)` | O(log n) | O(1)  | Includes rebalancing if needed         |
+| `find(v)`   | O(log n) | O(1)  | Binary search in balanced tree         |
+| `toArray()` | O(n)     | O(n)  | In-order traversal to get sorted array |
+
+> The implementation maintains balance through rotations (Left, Right, Left-Right, Right-Left) whenever the balance factor exceeds ±1.
 
 ## Graph
 
