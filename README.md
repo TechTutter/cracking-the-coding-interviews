@@ -33,7 +33,7 @@ An example of an abstraction is a "List", which might be implemented with a Vect
   - [**Heap**](#heap)
   - [**Trie**](#trie)
   - [**AVL Tree**](#avl-tree)
-  - **Segment Tree / Fenwick Tree (BIT)** - for efficient range queries
+  - [**Segment Tree / Fenwick Tree (BIT)**](#segment-tree) - for efficient range queries
 - [**Graph**](#graph)
 
 **The core ADTs for a SWE role** built on top of these data structure **are the following:**
@@ -382,6 +382,53 @@ A circular buffer (also known as a ring buffer) is a fixed-size buffer that wrap
 | `peek()`       | O(1) | O(1)  | Constant time access to oldest element |
 
 > The implementation uses a fixed-size array with head and tail pointers to achieve O(1) operations for enqueue and dequeue.
+
+### Segment Tree
+
+A Segment Tree is a data structure that allows efficient range queries and point updates on an array. It can be used for various operations like sum, minimum, maximum, etc.
+
+**Implementation** - See [SegmentTree.ts](./src/data-structures/tree/SegmentTree.ts)
+
+**Use Cases**
+
+- Range sum/min/max queries
+- Range updates
+- Finding the k-th smallest element in a range
+- Counting inversions in an array
+- Finding the longest increasing subsequence
+
+**Complexity**
+
+| Operation    | Time     | Space | Note                    |
+| ------------ | -------- | ----- | ----------------------- |
+| Construction | O(n)     | O(n)  | n = size of input array |
+| Query        | O(log n) | O(1)  | Range query operation   |
+| Update       | O(log n) | O(1)  | Point update operation  |
+
+### Fenwick Tree (Binary Indexed Tree)
+
+A Fenwick Tree is a data structure that provides an efficient way to perform prefix sum queries and point updates. It's more space-efficient than a Segment Tree but less flexible.
+
+**Implementation** - See [FenwickTree.ts](./src/data-structures/tree/FenwickTree.ts)
+
+**Use Cases**
+
+- Prefix sum queries
+- Point updates
+- Range sum queries
+- Counting inversions
+- Finding the k-th smallest element
+
+**Complexity**
+
+| Operation    | Time     | Space | Note                        |
+| ------------ | -------- | ----- | --------------------------- |
+| Construction | O(n)     | O(n)  | n = size of input array     |
+| Query        | O(log n) | O(1)  | Prefix sum query            |
+| Update       | O(log n) | O(1)  | Point update operation      |
+| Range Query  | O(log n) | O(1)  | Uses two prefix sum queries |
+
+> The Fenwick Tree is more space-efficient than a Segment Tree (O(n) vs O(2n)) but is limited to prefix sum operations. The Segment Tree is more flexible and can handle any associative operation.
 
 # ADTs
 
