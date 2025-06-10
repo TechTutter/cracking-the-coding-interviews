@@ -1,14 +1,18 @@
 import { Log } from "@utils/logger.ts";
-import { BitSet } from "@data-structures/bitset/BitSet.ts";
+import { Trie } from "@data-structures/tree/Trie.ts";
 
 function main() {
   console.log("Running...");
   try {
     /* eslint-disable-next-line*/
-    const mySet = new BitSet(16);
 
-    mySet.set(1);
-    console.log(mySet.get(1), mySet.get(2));
+    const trie = new Trie();
+    trie.insert("hello");
+    trie.insert("world");
+    trie.insert("hi");
+    console.log(trie.startsWith("he"));
+    console.log(trie.search("hello"));
+    console.log(trie.size());
 
   } catch (error) {
     Log.error(error);
