@@ -22,7 +22,7 @@ An example of an abstraction is a "List", which might be implemented with a Vect
 - [**Vector**](#vector)
 - [**StringBuilder**](#stringbuilder)
 - [**Bitset**](#bitset) - a.k.a. binary set, bit/binary vector
-- **Disjoint set / Union-Find** - for algorithms e.g. Kruskal
+- [**Disjoint set / Union-Find**](#union-find) - for algorithms e.g. Kruskal
 - [**Linked List**](#linked-list)
   - [**Doubly Linked List**](#doubly-linked-list)
 - [**Circular Buffer**](#circular-buffer)
@@ -310,7 +310,7 @@ A Trie (prefix tree) is a tree-like data structure used to store and retrieve st
 | `remove(word)`  | O(m) | O(1)  | m = length of word        |
 | `getAllWords()` | O(n) | O(n)  | n = total number of nodes |
 
-> The space complexity for storing n words of average length m is O(ALPHABET_SIZE _ n _ m) in the worst case, where ALPHABET_SIZE is the number of possible characters.
+> The space complexity for storing n words of average length m is O(ALPHABET*SIZE * n \_ m) in the worst case, where ALPHABET_SIZE is the number of possible characters.
 
 ### AVL Tree
 
@@ -404,3 +404,27 @@ A stack is a _LIFO queue_ with two primary operations, push and pop.
 - Pop - O(1)
 - Peek - O(1)
 - Search - O(1)
+
+### Union-Find
+
+A Union-Find (Disjoint Set) data structure that efficiently handles connected components with path compression and union by rank optimizations.
+
+**Implementation** - See [UnionFind.ts](./src/data-structures/union-find/UnionFind.ts)
+
+**Use Cases**
+
+- Kruskal's Minimum Spanning Tree algorithm
+- Cycle detection in undirected graphs
+- Connected components in graphs
+- Image processing (connected pixel regions)
+
+**Complexity**
+
+| Operation        | Time (Amortized) | Space | Note                                   |
+| ---------------- | ---------------- | ----- | -------------------------------------- |
+| `find(x)`        | O(α(n))          | O(1)  | α(n) is the inverse Ackermann function |
+| `union(x,y)`     | O(α(n))          | O(1)  | α(n) is the inverse Ackermann function |
+| `connected(x,y)` | O(α(n))          | O(1)  | Uses find internally                   |
+| `count()`        | O(1)             | O(1)  | Returns number of disjoint sets        |
+
+> The inverse Ackermann function α(n) grows extremely slowly and is effectively constant for all practical purposes.
