@@ -31,7 +31,7 @@ An example of an abstraction is a "List", which might be implemented with a Vect
   - [**Binary Tree**](#binary-tree)
   - [**Binary Search Tree (BST)**](#binary-search-tree-bst)
   - [**Heap**](#heap)
-  - **Trie**
+  - [**Trie**](#trie)
   - [**AVL Tree**](#avl-tree)
   - **Segment Tree / Fenwick Tree (BIT)** - for efficient range queries
 - [**Graph**](#graph)
@@ -288,6 +288,29 @@ A binary heap implementation that can be used as both a min-heap and max-heap th
 | `pop()`     | O(log n) | O(1)  | Sift down after removing root           |
 | `peek()`    | O(1)     | O(1)  | Direct access to root                   |
 | `heapify()` | O(n)     | O(1)  | More efficient than n individual pushes |
+
+### Trie
+
+A Trie (prefix tree) is a tree-like data structure used to store and retrieve strings efficiently. Each node represents a character, and the path from root to any node represents a prefix of stored words.
+
+**Implementation** - See [Trie.ts](./src/data-structures/tree/Trie.ts)
+
+**Use Cases**
+
+- Autocomplete and search suggestions
+- String matching algorithms
+
+**Complexity**
+
+| Operation       | Time | Space | Note                      |
+| --------------- | ---- | ----- | ------------------------- |
+| `insert(word)`  | O(m) | O(m)  | m = length of word        |
+| `search(word)`  | O(m) | O(1)  | m = length of word        |
+| `startsWith(p)` | O(m) | O(1)  | m = length of prefix      |
+| `remove(word)`  | O(m) | O(1)  | m = length of word        |
+| `getAllWords()` | O(n) | O(n)  | n = total number of nodes |
+
+> The space complexity for storing n words of average length m is O(ALPHABET_SIZE _ n _ m) in the worst case, where ALPHABET_SIZE is the number of possible characters.
 
 ### AVL Tree
 
